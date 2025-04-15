@@ -1,5 +1,10 @@
 # Deploy Scalable Java Application using Ansible and Terraform
 
+We want to deploy our Todo Application on AWS with the following architecture
+![](public/target_architecture.webp)
+
+For this, we are going to use Packer, Ansible and Terraform
+
 ### Step 1: Install Java and Maven
 
 Download Java
