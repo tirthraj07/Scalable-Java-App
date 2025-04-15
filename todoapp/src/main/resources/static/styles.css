@@ -1,0 +1,14 @@
+body {
+    font-family: sans-serif;
+    margin: 2rem;
+}
+input {
+    padding: 0.4rem;
+}
+button {
+    margin-left: 0.5rem;
+}
+.done {
+    text-decoration: line-through;
+    color: gray;
+}

@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS todo (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    task VARCHAR(255),
+    completed BOOLEAN
+);

@@ -10,6 +10,18 @@
     apt:
       name: openjdk-17-jre
       state: latest
+  
+  - name: Install dos2unix
+    become: true
+    apt:
+      name: dos2unix
+      state: present
+  
+  - name: Install MySQL client
+    become: true
+    apt:
+      name: mysql-client
+      state: present
 
   - name: Create log file
     file:

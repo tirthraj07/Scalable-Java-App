@@ -14,25 +14,25 @@ Download Apache Maven (Optional. You can use Maven Wrapper for the next steps)
 
 > Note: This step is **optional** as we already have the `jar` file in the `build_files` folder.
 
-Goto to `java_app` folder in this repo.
+Goto to `todoapp` folder in this repo.
 ```bash
-cd java_app
+cd todoapp
 ```
 
 Build the Spring Boot app using Maven/Maven Wrapper
 
 Using Apache Maven:
 ```bash
-mvn clean install -DskipTests
+mvn clean install
 ```
 
 Using Maven Wrapper
 ```bash
-./mvnw clean install -DskipTests
+./mvnw clean install
 ```
 Or
 ```bash
-./mvnw.cmd clean install -DskipTests
+./mvnw.cmd clean install
 ```
 
 After this, you should have a target folder like this:
@@ -41,14 +41,14 @@ After this, you should have a target folder like this:
 CD into the target folder you can find the JAR file for the application. Copy that jar file in the folder called `build_files`
 ```bash
 cd target
-cp spring-petclinic-3.1.0-SNAPSHOT.jar ../../build_files
+cp todoapp-0.0.1-SNAPSHOT.jar ..\..\build_files\
 ```
 
 **`build_files` folder**:
 ```
 root
 ├───build_files
-│       spring-petclinic-3.1.0-SNAPSHOT.jar
+│       todoapp-0.0.1-SNAPSHOT.jar
 ```
 
 We will use this `jar` in the next steps.
@@ -58,13 +58,13 @@ We will use this `jar` in the next steps.
 Copy your JAR file inside the ansible/files
 
 ```bash
-cp "build_files/spring-petclinic-3.1.0-SNAPSHOT.jar" "ansible/files"
+cp "build_files\todoapp-0.0.1-SNAPSHOT.jar" "ansible\files"
 ```
 
 And we'll rename the jar file so ease of use
 
 ```bash
-mv "ansible/files/spring-petclinic-3.1.0-SNAPSHOT.jar" "ansible/files/pet-clinic-1.0.1.jar"
+mv "ansible/files/todoapp-0.0.1-SNAPSHOT.jar" "ansible/files/todoapp-0.0.1.jar" 
 ```
 
 Your ansible directory should look something like this:
@@ -76,7 +76,7 @@ ansible
 │
 ├───files
 │       application.properties
-│       pet-clinic-1.0.1.jar
+│       todoapp-0.0.1.jar
 │       properties.py
 │       start.sh
 │
@@ -321,7 +321,7 @@ If template is valid, build your AMI using the command
 packer build java-app.pkr.hcl
 ```
 
-> It may take 15+ minutes to provision
+> It may take 15-20 minutes to provision
 
 Example output:
 ```
@@ -754,9 +754,31 @@ Apply complete! Resources: 3 added, 1 changed, 0 destroyed.
 ### Step 11: Check ALB and ASG Status and Website
 After the code runs successfully, validate ALB and ASG has provisioned. And you can check the health of your instance in the target group.
 
-Goto `AWS Console > EC2 > Load balancers`
-![](public/alb_page.png)
+Goto `AWS Console > EC2 > Target Groups`
 
 ![](public/asg_healthcheck.png)
 
+Then Goto: `AWS Console > EC2 > Load Balancers`
+![](public/alb_page.png)
+
+Click on the load balancer and copy the DNS name
+![](public/alb_config.png)
+
+--
+### Done 🥳
+Open the url and you should see your app!
 ![](public/output.png)
+
+
+--- 
+## Final Note:
+Make sure to delete all instances created during this tutorial or you would incur costs
+
+Checklist
+- Delete all EC2 Instances
+- Delete Load balancer
+- Delete Target Group
+- Delete AMIs
+- Delete RDS Database
+- Delete Secrets in AWS Security Manager
+- Delete VPCs if created by you instead of default

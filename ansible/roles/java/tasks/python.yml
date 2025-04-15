@@ -15,3 +15,7 @@
 - name: Install boto3 using pip3
   become: true
   command: python3 -m pip install boto3 --break-system-packages
+
+- name: Install PyMySQL using pip3
+  become: true
+  command: python3 -m pip install PyMySQL --break-system-packages

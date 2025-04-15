@@ -10,7 +10,7 @@
     files:
       - properties.py
       - start.sh
-      - pet-clinic-1.0.1.jar
+      - todoapp-0.0.1.jar
 
   roles:
     - java
